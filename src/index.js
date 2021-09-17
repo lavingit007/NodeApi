@@ -8,13 +8,30 @@ require('../src/db/conn');
 
 const City = require('../src/models/City');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3030;
+
+
+app.get('/city/:name', async (req, res) => {
+    try {
+        // const _id = req.params.id;
+        const cityData = await City.find({ name: req.params.name });
+        console.log(cityData);
+        if (!cityData) {
+            return res.status(404).send();
+        } else {
+            res.send(cityData);
+        }
+    } catch (e) {
+        res.send(e);
+    }
+});
+
 
 // find single
 
 app.get('/city/:id', async (req, res) => {
     try {
-        const _id = req.params.id;
+        const _id = req.params.name;
         const cityData = await City.findById({ _id });
         console.log(cityData);
         if (!cityData) {
@@ -27,8 +44,12 @@ app.get('/city/:id', async (req, res) => {
     }
 });
 
+
 // find all
-app.get('/City', async (req, res) => {
+
+
+
+app.get('/City/', async (req, res) => {
     try {
         const getcity = await City.find();
         res.send(getcity);
@@ -36,6 +57,7 @@ app.get('/City', async (req, res) => {
         res.send(e);
     }
 });
+
 
 app.listen(port, () => {
     console.log(`app listening on port:${port}`);

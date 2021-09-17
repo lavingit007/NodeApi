@@ -6,9 +6,6 @@ const CitySchema = new Schema({
     name: {
         type: String,
     },
-    country: {
-        type: String,
-    },
 });
 
 const City = new mongoose.model('City', CitySchema);
