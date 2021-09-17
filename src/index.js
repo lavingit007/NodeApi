@@ -28,7 +28,6 @@ app.get('/city/:id', async (req, res) => {
 });
 
 // find all
-/*
 app.get('/City', async (req, res) => {
     try {
         const getcity = await City.find();
@@ -38,7 +37,6 @@ app.get('/City', async (req, res) => {
     }
 });
 
-*/
 app.listen(port, () => {
     console.log(`app listening on port:${port}`);
 });
